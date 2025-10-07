@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoOneAhead 空气检测仪固件升级</title>
+    <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .card {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card:last-child {
+            border-bottom: none;
+        }
+        
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card.warning {
+            background: #fffbf0;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .card.success {
+            background: #f0f9ff;
+            border-left: 4px solid #3498db;
+        }
+        
+        .card.info {
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+        }
+        
+        ol, ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .install-area {
+            text-align: center;
+            padding: 40px 30px;
+        }
+        
+        esp-web-install-button {
+            --esp-tools-button-bg: #3498db;
+            --esp-tools-button-color: white;
+            --esp-tools-button-bg-hover: #2980b9;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            margin: 20px 0;
+        }
+        
+        .version-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .info-item strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .changelog {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .changelog ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .changelog li {
+            padding: 8px 0;
+            border-bottom: 1px solid #d1ecf1;
+        }
+        
+        .changelog li:last-child {
+            border-bottom: none;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+                flex-direction: column;
+            }
+            
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌬️ NoOneAhead 空气检测仪</h1>
+            <p>安全、便捷的无线固件升级服务</p>
+        </header>
+
+        <div class="card info">
+            <h2>📋 版本信息</h2>
+            <div class="version-info">
+                <div class="info-item">
+                    <strong>最新版本</strong>
+                    <span>v1.0.2</span>
+                </div>
+                <div class="info-item">
+                    <strong>发布时间</strong>
+                    <span>2024年1月15日</span>
+                </div>
+                <div class="info-item">
+                    <strong>固件大小</strong>
+                    <span>1.38 MB</span>
+                </div>
+                <div class="info-item">
+                    <strong>适用型号</strong>
+                    <span>ZN-1-2025-Pro</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card warning">
+            <h2>⚠️ 升级前准备</h2>
+            <ol>
+                <li>确保设备已<strong>接通电源</strong>并处于正常工作状态</li>
+                <li>使用<strong>数据线（非充电线）</strong>连接设备与电脑</li>
+                <li>使用 <strong>Chrome/Edge 浏览器</strong>（版本89以上）</li>
+                <li>关闭占用串口的其他软件（如Home Assistant）</li>
+                <li>升级过程约需<strong>2-3分钟</strong>，请勿断开电源或USB连接</li>
+            </ol>
+        </div>
+
+        <div class="install-area">
+            <h2>🚀 开始升级</h2>
+            <p>点击下方按钮，按照浏览器提示完成升级：</p>
+            <esp-web-install-button manifest="./firmware/zn-1/v1.0.2/manifest.json">
+            </esp-web-install-button>
+            <p><small>如果按钮无法点击，请检查浏览器是否支持WebSerial API</small></p>
+        </div>
+
+        <div class="card success">
+            <h2>📝 版本更新内容 (v1.0.2)</h2>
+            <div class="changelog">
+                <ul>
+                    <li>🎯 <strong>优化CO2传感器校准算法</strong> - 提升测量精度和稳定性</li>
+                    <li>🚨 <strong>新增高温自动报警功能</strong> - 温度超过阈值自动提醒</li>
+                    <li>📱 <strong>修复LCD背光控制问题</strong> - 背光调节更加平滑</li>
+                    <li>📶 <strong>提升WiFi连接稳定性</strong> - 减少断线重连次数</li>
+                    <li>⚡ <strong>优化设备功耗管理</strong> - 延长设备使用寿命</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>❓ 常见问题</h2>
+            <p><strong>问：点击按钮后没有反应？</strong><br>
+            答：请检查浏览器地址栏附近是否出现权限弹窗，点击"连接"或"允许"。</p>
+            
+            <p><strong>问：找不到我的设备？</strong><br>
+            答：请尝试更换USB接口或数据线，确保设备已通电，然后点击"选择串口"手动选择。</p>
+            
+            <p><strong>问：升级失败怎么办？</strong><br>
+            答：请刷新页面重试。如果多次失败，设备会自动恢复至上一版本。</p>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 NoOneAhead. 所有权利保留.</p>
+            <p>技术支持: <a href="mailto:support@nooneahead.com">support@nooneahead.com</a></p>
+            <p>访问地址: <strong>https://nooneahead.github.io/qiansuo-ota</strong></p>
+        </footer>
+    </div>
+
+    <script>
+        // 添加升级状态监控
+        document.addEventListener('DOMContentLoaded', function() {
+            const installButton = document.querySelector('esp-web-install-button');
+            
+            installButton.addEventListener('state-changed', (event) => {
+                const state = event.detail;
+                console.log('Installation state:', state);
+                
+                if (state === 'INSTALLING') {
+                    showMessage('升级进行中，请勿断开连接...', 'info');
+                } else if (state === 'SUCCESS') {
+                    showMessage('升级成功！设备将自动重启。', 'success');
+                } else if (state === 'ERROR') {
+                    showMessage('升级失败，请重试或联系技术支持。', 'error');
+                }
+            });
+            
+            function showMessage(message, type) {
+                // 可以在这里添加消息提示
+                console.log(`${type}: ${message}`);
+            }
+        });
+    </script>
+</body>
+</html>
