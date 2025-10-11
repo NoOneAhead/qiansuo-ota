@@ -1,0 +1,15 @@
+{
+  "name": "ZN-1 Air Quality Sensor",
+  "version": "1.0.3",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "/qiansuo-ota/firmware/zn-1/v1.0.3/firmware.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
