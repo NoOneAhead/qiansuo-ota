@@ -1,8 +1,8 @@
 {
   "success": true,
-  "version": "1.0.2",
-  "url": "https://www.qiansuo.top/firmware/zn-1/v1.0.2/firmware.ota.bin",
-  "md5_url": "https://www.qiansuo.top/firmware/zn-1/v1.0.2/firmware.md5",
+  "version": "1.0.3",
+  "url": "https://www.qiansuo.top/firmware/zn-1/v1.0.3/firmware.ota.bin",
+  "md5_url": "https://www.qiansuo.top/firmware/zn-1/v1.0.3/firmware.md5",
   "release_notes": [
     "优化CO2传感器校准算法",
     "新增高温自动报警功能",
