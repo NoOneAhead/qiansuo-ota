@@ -7,13 +7,13 @@
 <script type="module" src="./vendor/esp-web-tools/install-button.js"></script>
 <style>
   :root {
-    --bg: #0b0f17;
-    --bg2: #0f1522;
-    --card: rgba(255,255,255,.04);
-    --line: rgba(255,255,255,.09);
-    --fg: #eef2f8;
-    --dim: #8b96a8;
-    --green: #00c853;
+    --bg: #f6f8fa;
+    --card: #ffffff;
+    --line: #e7ecf2;
+    --fg: #16202e;
+    --dim: #64748b;
+    --green: #00a344;
+    --green-bg: #eafaf0;
     --radius: 18px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,9 +21,9 @@
   body {
     font-family: -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Segoe UI", sans-serif;
     background:
-      radial-gradient(1000px 500px at 80% -10%, rgba(0,200,83,.14), transparent 60%),
-      radial-gradient(800px 500px at -10% 30%, rgba(61,139,255,.10), transparent 60%),
-      linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      radial-gradient(900px 420px at 85% -8%, rgba(0,163,68,.07), transparent 60%),
+      radial-gradient(700px 420px at -8% 26%, rgba(61,139,255,.06), transparent 60%),
+      var(--bg);
     background-attachment: fixed;
     color: var(--fg);
     min-height: 100vh;
@@ -31,11 +31,11 @@
   }
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
 
-  .hero { padding: 64px 0 40px; text-align: center; }
+  .hero { padding: 60px 0 36px; text-align: center; }
   .brand {
     display: inline-flex; align-items: center; gap: 10px;
-    color: var(--dim); font-size: 14px; letter-spacing: 2px;
-    margin-bottom: 26px; text-transform: uppercase;
+    color: var(--dim); font-size: 13px; letter-spacing: 2px;
+    margin-bottom: 24px; text-transform: uppercase;
   }
   .mark {
     width: 38px; height: 26px; border: 2.5px solid var(--green);
@@ -49,16 +49,17 @@
   .chip {
     font-size: 13px; color: var(--dim);
     border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
-    background: rgba(255,255,255,.03);
+    background: #fff;
   }
 
   .card {
     background: var(--card); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 26px;
-    margin-top: 22px; backdrop-filter: blur(6px);
+    margin-top: 22px;
+    box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -12px rgba(16,24,40,.08);
   }
   .card h2 {
-    font-size: 15px; font-weight: 600; color: var(--dim);
+    font-size: 14px; font-weight: 700; color: var(--dim);
     letter-spacing: 3px; margin-bottom: 18px;
   }
 
@@ -67,14 +68,15 @@
   .channel {
     position: relative; cursor: pointer;
     border: 1.5px solid var(--line); border-radius: 14px;
-    padding: 18px 18px 16px; transition: border-color .2s, background .2s;
+    padding: 18px 18px 16px; transition: border-color .2s, background .2s, box-shadow .2s;
+    background: #fff;
   }
-  .channel:hover { border-color: rgba(255,255,255,.25); }
-  .channel.active { border-color: var(--green); background: rgba(0,200,83,.06); }
+  .channel:hover { border-color: #c9d3df; }
+  .channel.active { border-color: var(--green); background: var(--green-bg); box-shadow: 0 0 0 3px rgba(0,163,68,.08); }
   .channel .tag {
     position: absolute; top: -10px; right: 14px;
     font-size: 11px; font-weight: 700; letter-spacing: 1px;
-    background: var(--green); color: #04220f; border-radius: 999px; padding: 2px 10px;
+    background: var(--green); color: #fff; border-radius: 999px; padding: 2px 10px;
   }
   .channel .name { font-weight: 700; font-size: 16px; }
   .channel .ver { font-size: 26px; font-weight: 800; margin: 6px 0 2px; font-variant-numeric: tabular-nums; }
@@ -84,24 +86,24 @@
 
   .install { text-align: center; padding-top: 28px; }
   .install .hint { color: var(--dim); font-size: 13px; margin-top: 14px; }
-  .install .warn-line { color: #e8a33d; font-size: 13px; margin-top: 6px; }
+  .install .warn-line { color: #b45309; font-size: 13px; margin-top: 6px; }
 
   .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
   .step { display: flex; gap: 12px; align-items: flex-start; padding: 6px 2px; }
   .step .n {
     flex: none; width: 26px; height: 26px; border-radius: 8px;
-    background: rgba(0,200,83,.12); color: var(--green);
+    background: var(--green-bg); color: var(--green);
     display: flex; align-items: center; justify-content: center;
     font-weight: 800; font-size: 13px; margin-top: 3px;
   }
-  .step p { font-size: 14px; color: #c6cedb; }
+  .step p { font-size: 14px; color: #3d4a5c; }
   .step p b { color: var(--fg); }
 
   .log { list-style: none; }
   .log li {
     padding: 9px 0 9px 22px; position: relative;
-    color: #c6cedb; font-size: 14.5px; border-bottom: 1px dashed rgba(255,255,255,.06);
+    color: #3d4a5c; font-size: 14.5px; border-bottom: 1px dashed #edf1f6;
   }
   .log li:last-child { border-bottom: 0; }
   .log li::before {
@@ -109,7 +111,7 @@
     width: 7px; height: 7px; border-radius: 50%; background: var(--green);
   }
 
-  details { border-bottom: 1px solid rgba(255,255,255,.06); padding: 4px 0; }
+  details { border-bottom: 1px solid #eef2f6; padding: 4px 0; }
   details:last-of-type { border-bottom: 0; }
   summary {
     cursor: pointer; padding: 12px 0; font-size: 15px; font-weight: 600;
@@ -120,7 +122,7 @@
   details[open] summary::after { transform: rotate(45deg); }
   details p { color: var(--dim); font-size: 14px; padding: 0 0 14px; }
 
-  footer { text-align: center; margin-top: 46px; font-size: 13px; color: #5b6575; }
+  footer { text-align: center; margin-top: 46px; font-size: 13px; color: #94a3b8; }
   footer a { color: var(--dim); text-decoration: none; }
 
   .fade { opacity: 0; transform: translateY(14px); animation: up .7s ease forwards; }
@@ -161,12 +163,12 @@
     </div>
     <div class="install">
       <esp-web-install-button id="btn" manifest="/firmware/zn-1-v2/v2.1.0/manifest.json">
-        <button slot="activate" style="background:#00c853;color:#04220f;border:0;border-radius:12px;
+        <button slot="activate" style="background:#00a344;color:#ffffff;border:0;border-radius:12px;box-shadow:0 6px 16px -6px rgba(0,163,68,.5);
           padding:14px 44px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;">
           连接设备并刷入
         </button>
-        <span slot="unsupported" style="color:#e8a33d">当前浏览器不支持网页刷机，请使用电脑版 Chrome 或 Edge 打开本页</span>
-        <span slot="not-allowed" style="color:#e8a33d">请使用 HTTPS 访问本页</span>
+        <span slot="unsupported" style="color:#b45309">当前浏览器不支持网页刷机，请使用电脑版 Chrome 或 Edge 打开本页</span>
+        <span slot="not-allowed" style="color:#b45309">请使用 HTTPS 访问本页</span>
       </esp-web-install-button>
       <p class="hint">点击后在弹窗中选择设备串口（通常名为 USB 串行设备 / USB JTAG）</p>
       <p class="warn-line">刷机过程约 1–2 分钟，请勿断开 USB 或关闭页面</p>
