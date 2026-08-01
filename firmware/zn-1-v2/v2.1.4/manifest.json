@@ -1,0 +1,12 @@
+{
+  "name": "ZN1-Pro Native Firmware",
+  "version": "2.1.4",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        { "path": "/firmware/zn-1-v2/v2.1.4/factory.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
