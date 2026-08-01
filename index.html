@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoOneAhead 空气检测仪固件升级</title>
-    <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <style>
         * {
             margin: 0;
@@ -184,11 +184,11 @@
             <div class="version-info">
                 <div class="info-item">
                     <strong>最新版本</strong>
-                    <span>v1.0.2</span>
+                    <span id="fw-version">加载中…</span>
                 </div>
                 <div class="info-item">
                     <strong>发布时间</strong>
-                    <span>2025年10月11日</span>
+                    <span id="fw-date">加载中…</span>
                 </div>
                 <div class="info-item">
                     <strong>适用型号</strong>
@@ -211,20 +211,16 @@
         <div class="install-area">
             <h2>🚀 开始升级</h2>
             <p>点击下方按钮，按照浏览器提示完成升级：</p>
-            <esp-web-install-button manifest="./firmware/zn-1/v1.0.1/manifest.json">
+            <esp-web-install-button id="install-btn" manifest="./firmware/zn-1/v1.0.4/manifest.json">
             </esp-web-install-button>
             <p><small>如果按钮无法点击，请检查浏览器是否支持WebSerial API</small></p>
         </div>
 
         <div class="card success">
-            <h2>📝 版本更新内容 (v1.0.2)</h2>
+            <h2 id="changelog-title">📝 版本更新内容</h2>
             <div class="changelog">
-                <ul>
-                    <li>🎯 <strong>优化CO2传感器校准算法</strong> - 提升测量精度和稳定性</li>
-                    <li>🚨 <strong>新增高温自动报警功能</strong> - 温度超过阈值自动提醒</li>
-                    <li>📱 <strong>修复LCD背光控制问题</strong> - 背光调节更加平滑</li>
-                    <li>📶 <strong>提升WiFi连接稳定性</strong> - 减少断线重连次数</li>
-                    <li>⚡ <strong>优化设备功耗管理</strong> - 延长设备使用寿命</li>
+                <ul id="changelog-list">
+                    <li>加载中…</li>
                 </ul>
             </div>
         </div>
@@ -248,6 +244,31 @@
     </div>
 
     <script>
+        // 从 api/latest 动态加载版本信息，页面永不过期
+        fetch('./api/latest', {cache: 'no-store'})
+            .then(r => r.json())
+            .then(j => {
+                if (!j.success) return;
+                document.getElementById('fw-version').textContent = 'v' + j.version;
+                if (j.publish_date) {
+                    const d = new Date(j.publish_date);
+                    document.getElementById('fw-date').textContent =
+                        d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+                }
+                document.getElementById('changelog-title').textContent =
+                    '📝 版本更新内容 (v' + j.version + ')';
+                const ul = document.getElementById('changelog-list');
+                ul.innerHTML = '';
+                (j.release_notes || []).forEach(n => {
+                    const li = document.createElement('li');
+                    li.textContent = n;
+                    ul.appendChild(li);
+                });
+                document.getElementById('install-btn').setAttribute(
+                    'manifest', './firmware/zn-1/v' + j.version + '/manifest.json');
+            })
+            .catch(e => console.warn('load api/latest failed', e));
+
         // 添加升级状态监控
         document.addEventListener('DOMContentLoaded', function() {
             const installButton = document.querySelector('esp-web-install-button');
