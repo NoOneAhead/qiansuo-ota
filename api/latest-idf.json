@@ -1,5 +1,14 @@
 {
   "success": true,
   "version": "2.1.0",
-  "url": "https://www.qiansuo.top/firmware/zn-1-v2/v2.1.0/zn1-pro.bin"
+  "url": "https://www.qiansuo.top/firmware/zn-1-v2/v2.1.0/zn1-pro.bin",
+  "publish_date": "2026-08-01T12:00:00Z",
+  "release_notes": [
+    "全新原生固件架构，开机扫码即用",
+    "固定网页地址 zn1.local，免记 IP",
+    "屏幕新增 1 小时趋势曲线与浓度量表条",
+    "MQTT 直连 Home Assistant，免密钥自动发现",
+    "双分区 OTA 升级，断电不变砖",
+    "屏幕方向掉电保存，长按按键 5 秒快速配网"
+  ]
 }
