@@ -1,12 +1,10 @@
 {
   "success": true,
-  "version": "2.1.1",
-  "url": "https://www.qiansuo.top/firmware/zn-1-v2/v2.1.1/zn1-pro.bin",
-  "publish_date": "2026-08-01T14:00:00Z",
+  "version": "2.1.3",
+  "url": "https://www.qiansuo.top/firmware/zn-1-v2/v2.1.3/zn1-pro.bin",
+  "publish_date": "2026-08-01T15:00:00Z",
   "release_notes": [
-    "开机画面显示固件版本号",
-    "网页升级增加结果弹窗提示",
-    "传感器校准增加三步安全确认",
-    "修复固件升级后网页缓存不刷新的问题"
+    "固件升级改为用户确认制：检查到新版本后由用户决定是否升级",
+    "升级失败提示优化，弱信号场景给出明确建议"
   ]
 }
