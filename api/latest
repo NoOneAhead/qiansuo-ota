@@ -1,16 +1,15 @@
 {
   "success": true,
-  "version": "1.0.3",
-  "url": "https://www.qiansuo.top/firmware/zn-1/v1.0.3/firmware.ota.bin",
-  "md5_url": "https://www.qiansuo.top/firmware/zn-1/v1.0.3/firmware.md5",
+  "version": "1.0.4",
+  "url": "https://www.qiansuo.top/firmware/zn-1/v1.0.4/firmware.ota.bin",
+  "md5_url": "https://www.qiansuo.top/firmware/zn-1/v1.0.4/firmware.md5",
   "release_notes": [
-    "优化CO2传感器校准算法",
-    "新增高温自动报警功能",
-    "修复LCD背光控制问题",
-    "提升WiFi连接稳定性",
-    "优化设备功耗管理"
+    "新增设备内置管理网页，无需App即可查看数据与校准",
+    "新增开机二维码，扫码直达设备管理页",
+    "修复固件升级后版本号显示不更新的问题",
+    "CO2读数校准基准优化"
   ],
-  "publish_date": "2025-10-11T10:00:00Z",
+  "publish_date": "2026-08-01T08:00:00Z",
   "is_critical": false,
   "supported_models": ["ZN1-Pro"]
 }
